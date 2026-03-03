@@ -1,9 +1,15 @@
 <template>
-  <div style="display: inline-flex; flex-direction: column">
-    <button :onclick="open">Open popup</button>
-    <button :onclick="moveBy">Move window</button>
-    <button :onclick="resizeBy">Resize window</button>
-    <button :onclick="reset">Reset window</button>
+  <div style="display: inline-flex; flex-direction: column; gap: 8px;">
+    <ant-button type="primary" text="Open popup" :onclick="open"></ant-button>
+    <ant-button type="default" text="Move window" :onclick="moveBy"></ant-button>
+    <ant-button type="dashed" text="Resize window" :onclick="resizeBy"></ant-button>
+    <ant-button type="primary" danger text="Reset window" :onclick="reset"></ant-button>
+
+    <div style="display: flex; gap: 8px; margin-top: 10px;">
+      <ant-tag color="processing" text="Zoom Tracker Active"></ant-tag>
+      <ant-tag color="success" text="Metrics Syncing"></ant-tag>
+      <ant-rate allowHalf="true" value="4.5"></ant-rate>
+    </div>
   </div>
   <br>
   <br>
@@ -64,6 +70,7 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
+import "./antd-wc";
 
 // Affect innerWidth
 const popupConfig = [
