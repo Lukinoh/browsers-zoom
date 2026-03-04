@@ -9,6 +9,13 @@
       <ant-tag color="processing" text="Zoom Tracker Active"></ant-tag>
       <ant-tag color="success" text="Metrics Syncing"></ant-tag>
       <ant-rate allowHalf="true" value="4.5"></ant-rate>
+      <ant-select 
+        value="jack" 
+        options='[{"value": "jack", "label": "Jack"}, {"value": "lucy", "label": "Lucy"}]'
+        customStyle='{"width": 120}'
+      ></ant-select>
+      <ant-input placeholder="Type something..." customStyle='{"width": 150}'></ant-input>
+      <ant-switch defaultChecked="true"></ant-switch>
     </div>
   </div>
   <br>

@@ -1,5 +1,5 @@
 import r2wc from '@r2wc/react-to-web-component';
-import { Button, Tag, Rate, ConfigProvider } from 'antd';
+import { Button, Tag, Rate, Select, Input, Switch, ConfigProvider } from 'antd';
 import React from 'react';
 
 // Theme configuration to show it works globally on these components
@@ -12,11 +12,17 @@ const themeConfig = {
 
 // HOC to inject the theme provider
 const withTheme = (Component: React.ElementType) => {
-  return (props: any) => React.createElement(
-    ConfigProvider,
-    { theme: themeConfig, prefixCls: 'feb' },
-    React.createElement(Component, props, props.text) // passing props.text as children for components that use it
-  );
+  return (props: any) => {
+    // Map customStyle to style to avoid conflicts with native HTML style attribute in Vue
+    const { customStyle, ...rest } = props;
+    const finalProps = customStyle ? { ...rest, style: customStyle } : rest;
+    
+    return React.createElement(
+      ConfigProvider,
+      { theme: themeConfig, prefixCls: 'feb' },
+      React.createElement(Component, finalProps, finalProps.text) // passing props.text as children for components that use it
+    );
+  };
 };
 
 // Button wrapper
@@ -48,3 +54,42 @@ const WebAntRate = r2wc(withTheme(Rate), {
   }
 });
 customElements.define('ant-rate', WebAntRate);
+
+// Select wrapper
+const WebAntSelect = r2wc(withTheme(Select), {
+  props: {
+    options: "json",
+    value: "string",
+    defaultValue: "string",
+    placeholder: "string",
+    disabled: "boolean",
+    allowClear: "boolean",
+    customStyle: "json"
+  }
+});
+customElements.define('ant-select', WebAntSelect);
+
+// Input wrapper
+const WebAntInput = r2wc(withTheme(Input), {
+  props: {
+    value: "string",
+    defaultValue: "string",
+    placeholder: "string",
+    disabled: "boolean",
+    allowClear: "boolean",
+    type: "string",
+    customStyle: "json"
+  }
+});
+customElements.define('ant-input', WebAntInput);
+
+// Switch wrapper
+const WebAntSwitch = r2wc(withTheme(Switch), {
+  props: {
+    checked: "boolean",
+    defaultChecked: "boolean",
+    disabled: "boolean",
+    size: "string"
+  }
+});
+customElements.define('ant-switch', WebAntSwitch);
