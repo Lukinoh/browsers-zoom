@@ -1,13 +1,13 @@
 <template>
-  <div style="display: inline-flex; flex-direction: column">
-    <button :onclick="open">Open popup</button>
-    <button :onclick="moveBy">Move window</button>
-    <button :onclick="resizeBy">Resize window</button>
-    <button :onclick="reset">Reset window</button>
+  <div style="display: inline-flex; flex-direction: column;">
+    <button class="fontsize" :onclick="open">Open popup</button>
+    <button class="fontsize" :onclick="moveBy">Move window</button>
+    <button class="fontsize" :onclick="resizeBy">Resize window</button>
+    <button class="fontsize" :onclick="reset">Reset window</button>
   </div>
   <br>
   <br>
-  <div style="display: grid; grid-template-columns: min-content auto min-content auto; gap: 10px">
+  <div class="fontsize" style="display: grid; grid-template-columns: min-content auto min-content auto; gap: 5px">
     <div>
       innerWidth
     </div>
@@ -48,13 +48,13 @@
     </div>
     <div style="grid-column: span 4; background: black; height: 1px"></div>
     <div>
-      devicePixelRatio
+      dPR
     </div>
     <div>
       {{data.devicePixelRatio}}
     </div>
     <div>
-      magicDevicePixelRatio
+      magicdPR
     </div>
     <div>
       {{data.magicPixelRatio}}
@@ -123,4 +123,11 @@ const reset = () => {
 </script>
 
 <style scoped>
+
+.fontsize {
+  font-size: 11px;
+  //font-size: 28px;
+  //font-size: 55px; /* safari */
+}
+
 </style>
